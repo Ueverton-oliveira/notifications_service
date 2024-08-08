@@ -1,6 +1,6 @@
-# Task Manager
+# Notification Service
 
-Este é o projeto Task Manager, desenvolvido com Ruby on Rails. Ele permite gerenciar tarefas e enviar notificações com base na criação ou atualização dessas tarefas.
+Este é o serviço de notificação, desenvolvido para enviar notificações aos usuários com base em eventos como a criação ou atualização de tarefas. Ele utiliza Ruby on Rails e `HTTParty` para enviar notificações.
 
 ## Requisitos
 
@@ -18,8 +18,8 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados:
 ### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/usuario/task-manager.git
-cd task-manager
+git clone https://github.com/usuario/notification_service.git
+cd notification_service
 ```
 
 ### 2. Instale as Dependências
@@ -46,15 +46,15 @@ default: &default
 
 development:
   <<: *default
-  database: task_manager_development
+  database: notification_service_development
 
 test:
   <<: *default
-  database: task_manager_test
+  database: notification_service_test
 
 production:
   <<: *default
-  database: task_manager_production
+  database: notification_service_production
   username: seu_usuario_producao
   password: sua_senha_producao
 ```
@@ -70,13 +70,13 @@ rails db:migrate
 
 ### 5. Configuração de Variáveis de Ambiente
 
-Crie um arquivo `.env` na raiz do projeto para configurar as variáveis de ambiente necessárias, como chaves de API e outros dados sensíveis.
+Crie um arquivo `.env` na raiz do projeto para configurar as variáveis de ambiente necessárias, como chaves de API e URLs de endpoints para envio de notificações.
 
 Exemplo de `.env`:
 
 ```
-API_KEY=suachaveapi
-SECRET_KEY=suachavesecreta
+NOTIFICATION_API_KEY=suachaveapi
+NOTIFICATION_ENDPOINT=https://example.com/notifications
 ```
 
 ### 6. Executando o Servidor
@@ -87,15 +87,15 @@ Inicie o servidor Rails:
 rails server
 ```
 
-Acesse o projeto em `http://localhost:3000`.
+O serviço estará disponível em `http://localhost:3000`.
 
 ## Configuração com Docker
 
 ### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/usuario/task-manager.git
-cd task-manager
+git clone https://github.com/usuario/notification_service.git
+cd notification_service
 ```
 
 ### 2. Configurar as Variáveis de Ambiente
@@ -120,9 +120,9 @@ Após inicializar os contêineres, execute as migrações dentro do contêiner:
 docker-compose exec web rails db:create db:migrate
 ```
 
-### 5. Acessar a Aplicação
+### 5. Acessar o Serviço de Notificação
 
-A aplicação estará disponível em `http://localhost:3000`.
+O serviço estará disponível em `http://localhost:3000`.
 
 ## Testes
 
@@ -131,10 +131,9 @@ Para rodar os testes, use o seguinte comando:
 ### Configuração Manual
 
 ```bash
-rails test
+rspec
 ```
-
-<img width="451" alt="image" src="https://github.com/user-attachments/assets/60f34f1b-d2da-4944-ad97-87837d27c98c">
+<img width="469" alt="image" src="https://github.com/user-attachments/assets/1d852bce-52fc-4f1b-8b2a-5e022a30f2ec">
 
 
 ### Com Docker
